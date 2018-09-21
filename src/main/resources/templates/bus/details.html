@@ -5,6 +5,7 @@
     <title>Bus</title>
 </head>
 <body>
+<header th:include="fragments/fragments :: header"></header>
 
 <table th:object="${bus}">
     <tbody>
@@ -22,5 +23,6 @@
 <a th:href="@{/buses/edit/{id}(id=${bus.id})}">Edit</a>
 <a th:href="@{/buses/delete/{id}(id=${bus.id})}">Delete</a>
 
+<footer th:include="fragments/fragments :: footer"></footer>
 </body>
 </html>

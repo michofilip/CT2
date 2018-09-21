@@ -35,7 +35,7 @@ public class BusController {
     }
 
     @GetMapping("/details/{id}")
-    public String details(@PathVariable Long id, Model model) {
+    public String details(@PathVariable long id, Model model) {
         Bus bus = busRepository.findOne(id);
         model.addAttribute(bus);
 
@@ -43,7 +43,7 @@ public class BusController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@PathVariable long id, Model model) {
         Bus bus = busRepository.findOne(id);
         model.addAttribute(bus);
 
@@ -51,17 +51,28 @@ public class BusController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid Bus bus, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "bus/form";
+    public String save(@Valid Bus bus, BindingResult bindingResult, @RequestParam String submit) {
+        if ("save".equals(submit)) {
+            if (bindingResult.hasErrors()) {
+                return "bus/form";
+            }
+            busRepository.save(bus);
         }
-        busRepository.save(bus);
         return "redirect:/buses/";
     }
 
     @GetMapping("delete/{id}")
-    public String delete(@PathVariable long id) {
-        busRepository.delete(id);
+    public String delete(@PathVariable long id, Model model) {
+        model.addAttribute("id", id);
+//        busRepository.delete(id);
+        return "bus/confirm";
+    }
+
+    @PostMapping("delete")
+    public String delete(@RequestParam long id, @RequestParam String submit) {
+        if ("delete".equals(submit)) {
+            busRepository.delete(id);
+        }
         return "redirect:/buses/";
     }
 }

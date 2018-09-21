@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+
+<div th:fragment="header">
+    <a th:href="@{/buses/}" th:text="Buses">header</a><br>
+    <hr>
+</div>
+
+<div th:fragment="footer">
+    <hr>
+    <p th:text="footer">footer</p>
+</div>
+
+</body>
+</html>

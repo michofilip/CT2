@@ -5,6 +5,7 @@
     <title>Form</title>
 </head>
 <body>
+<header th:include="fragments/fragments :: header"></header>
 
 <form th:action="@{/buses/save}" th:object="${bus}" method="post">
     <label>
@@ -12,9 +13,12 @@
     </label><br>
     <label>
         <input type="text" th:field="*{description}"/>
-    </label>
-    <input type="submit" value="Submit"/>
+        <span class="alert alert-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+    </label><br>
+    <button name="submit" value="save">Save</button>
+    <button name="submit" value="cancel">Cancel</button>
 </form>
 
+<footer th:include="fragments/fragments :: footer"></footer>
 </body>
 </html>

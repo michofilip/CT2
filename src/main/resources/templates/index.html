@@ -5,13 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+<header th:include="fragments/fragments :: header"></header>
 
-<p th:text="'Hello Thymeleaf'"></p>
-<h1 th:text="${message}"></h1>
-<p th:text="${message}"></p>
-<span th:text="${message}"></span>
+<a th:href="@{/generate}" th:text="generate">generate</a>
 
-<a href="/generate">generate</a>
-
+<footer th:include="fragments/fragments :: footer"></footer>
 </body>
 </html>

@@ -4,7 +4,6 @@ import com.example.ct2.bus.Bus;
 import com.example.ct2.bus.BusRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,8 +15,7 @@ public class IndexController {
     private final BusRepository busRepository;
 
     @GetMapping
-    public String hello(Model model) {
-        model.addAttribute("message", "Hello Coderslab");
+    public String index() {
         return "index";
     }
 

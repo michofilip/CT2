@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+<header th:include="fragments/fragments :: header"></header>
+
+<form th:action="@{/buses/delete}" method="post">
+    <input type="hidden" th:name="id" th:value="${id}"/>
+    <label>
+        <span th:text="#{confirm.text}">Are you sure?</span><br>
+        <button th:name="submit" th:value="delete" th:text="Delete">Delete</button>
+        <button th:name="submit" th:value="cancel" th:text="Cancel">Cancel</button>
+    </label>
+
+</form>
+
+<footer th:include="fragments/fragments :: footer"></footer>
+</body>
+</html>
