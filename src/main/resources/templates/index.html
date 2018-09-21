@@ -1,15 +1,17 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 
 <p th:text="'Hello Thymeleaf'"></p>
-<h1 th:text="${message}" ></h1>
+<h1 th:text="${message}"></h1>
 <p th:text="${message}"></p>
-<span th:text="${message}" ></span>
+<span th:text="${message}"></span>
+
+<a href="/generate">generate</a>
 
 </body>
 </html>

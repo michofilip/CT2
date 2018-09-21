@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus</title>
+</head>
+<body>
+
+<table th:object="${bus}">
+    <tbody>
+    <tr>
+        <th>ID</th>
+        <td th:text="*{id}">id</td>
+    </tr>
+    <tr>
+        <th>description</th>
+        <td th:text="*{description}">description</td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/buses/edit/{id}(id=${bus.id})}">Edit</a>
+<a th:href="@{/buses/delete/{id}(id=${bus.id})}">Delete</a>
+
+</body>
+</html>

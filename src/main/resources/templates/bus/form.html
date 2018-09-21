@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+
+<form th:action="@{/buses/save}" th:object="${bus}" method="post">
+    <label>
+        <input type="hidden" th:field="*{id}"/>
+    </label><br>
+    <label>
+        <input type="text" th:field="*{description}"/>
+    </label>
+    <input type="submit" value="Submit"/>
+</form>
+
+</body>
+</html>
