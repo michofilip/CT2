@@ -10,7 +10,8 @@
 <form th:action="@{/buses/delete}" method="post">
     <input type="hidden" th:name="id" th:value="${id}"/>
     <label>
-        <div th:text="#{bus.confirm.areYouSure}">areYouSure</div>
+        <span th:text="#{bus.confirm.areYouSure}">areYouSure</span>
+        <br>
         <br>
         <button th:name="submit" th:value="delete" th:text="#{bus.confirm.delete}">delete</button>
         <button th:name="submit" th:value="cancel" th:text="#{bus.confirm.cancel}">cancel</button>
