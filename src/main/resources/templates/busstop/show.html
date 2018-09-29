@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{busstop.show.title}">title</title>
+</head>
+<body>
+<header th:include="fragments/fragments :: header"></header>
+
+<a th:href="@{/busstops/add}" th:text="#{busstop.show.add}">add</a>
+
+<table>
+    <thead>
+    <tr>
+        <th th:text="#{busstop.show.id}">id</th>
+        <th th:text="#{busstop.show.name}">name</th>
+        <th th:text="#{busstop.show.actions}">actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="busstop : ${busstops}">
+        <td th:text="${busstop.id}">id</td>
+        <td th:text="${busstop.name}">name</td>
+        <td>
+            <a th:href="@{/busstops/details/{id}(id=${busstop.id})}" th:text="#{busstop.show.details}">details</a>
+            <a th:href="@{/busstops/edit/{id}(id=${busstop.id})}" th:text="#{busstop.show.edit}">edit</a>
+            <a th:href="@{/busstops/delete/{id}(id=${busstop.id})}" th:text="#{busstop.show.delete}">delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:include="fragments/fragments :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{busstop.details.title}">title</title>
+</head>
+<body>
+<header th:include="fragments/fragments :: header"></header>
+
+<table th:object="${busstop}">
+    <tbody>
+    <tr>
+        <th th:text="#{busstop.details.id}">id</th>
+        <td th:text="*{id}">id</td>
+    </tr>
+    <tr>
+        <th th:text="#{busstop.details.name}">name</th>
+        <td th:text="*{name}">name</td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/busstops/edit/{id}(id=${busstop.id})}" th:text="#{busstop.details.edit}">edit</a>
+<a th:href="@{/busstops/delete/{id}(id=${busstop.id})}" th:text="#{busstop.details.delete}">delete</a>
+
+<footer th:include="fragments/fragments :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{busstop.confirm.title}">title</title>
+</head>
+<body>
+<header th:include="fragments/fragments :: header"></header>
+
+<form th:action="@{/busstops/delete}" method="post">
+    <input type="hidden" th:name="id" th:value="${id}"/>
+    <label>
+        <div th:text="#{busstop.confirm.areYouSure}">areYouSure</div>
+        <br>
+        <button th:name="submit" th:value="delete" th:text="#{busstop.confirm.delete}">delete</button>
+        <button th:name="submit" th:value="cancel" th:text="#{busstop.confirm.cancel}">cancel</button>
+    </label>
+
+</form>
+
+<footer th:include="fragments/fragments :: footer"></footer>
+</body>
+</html>
