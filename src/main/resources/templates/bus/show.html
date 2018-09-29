@@ -2,19 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Buses</title>
+    <title th:text="#{bus.show.title}">title</title>
 </head>
 <body>
 <header th:include="fragments/fragments :: header"></header>
 
-<a th:href="@{/buses/add}">Add</a>
+<a th:href="@{/buses/add}" th:text="#{bus.show.add}">add</a>
 
 <table>
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Description</th>
-        <th>Actions</th>
+        <th th:text="#{bus.show.id}">id</th>
+        <th th:text="#{bus.show.description}">description</th>
+        <th th:text="#{bus.show.actions}">actions</th>
     </tr>
     </thead>
     <tbody>
@@ -22,9 +22,9 @@
         <td th:text="${bus.id}">id</td>
         <td th:text="${bus.description}">description</td>
         <td>
-            <a th:href="@{/buses/details/{id}(id=${bus.id})}">Details</a>
-            <a th:href="@{/buses/edit/{id}(id=${bus.id})}">Edit</a>
-            <a th:href="@{/buses/delete/{id}(id=${bus.id})}">Delete</a>
+            <a th:href="@{/buses/details/{id}(id=${bus.id})}" th:text="#{bus.show.details}">details</a>
+            <a th:href="@{/buses/edit/{id}(id=${bus.id})}" th:text="#{bus.show.edit}">edit</a>
+            <a th:href="@{/buses/delete/{id}(id=${bus.id})}" th:text="#{bus.show.delete}">delete</a>
         </td>
     </tr>
     </tbody>

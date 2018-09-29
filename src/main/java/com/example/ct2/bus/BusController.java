@@ -64,7 +64,6 @@ public class BusController {
     @GetMapping("delete/{id}")
     public String delete(@PathVariable long id, Model model) {
         model.addAttribute("id", id);
-//        busRepository.delete(id);
         return "bus/confirm";
     }
 

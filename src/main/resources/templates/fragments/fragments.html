@@ -7,7 +7,9 @@
 <body>
 
 <div th:fragment="header">
-    <a th:href="@{/buses/}" th:text="Buses">header</a><br>
+    <a th:href="@{/}" th:text="#{fragments.header.home}">home</a>
+    <a th:href="@{/buses/}" th:text="#{fragments.header.buses}">buses</a>
+    <a th:href="@{/busstops/}" th:text="#{fragments.header.busstops}">busstops</a>
     <hr>
 </div>
 

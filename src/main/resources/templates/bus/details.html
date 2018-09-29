@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Bus</title>
+    <title th:text="#{bus.details.title}">title</title>
 </head>
 <body>
 <header th:include="fragments/fragments :: header"></header>
@@ -10,18 +10,18 @@
 <table th:object="${bus}">
     <tbody>
     <tr>
-        <th>ID</th>
+        <th th:text="#{bus.details.id}">id</th>
         <td th:text="*{id}">id</td>
     </tr>
     <tr>
-        <th>description</th>
+        <th th:text="#{bus.details.description}">description</th>
         <td th:text="*{description}">description</td>
     </tr>
     </tbody>
 </table>
 
-<a th:href="@{/buses/edit/{id}(id=${bus.id})}">Edit</a>
-<a th:href="@{/buses/delete/{id}(id=${bus.id})}">Delete</a>
+<a th:href="@{/buses/edit/{id}(id=${bus.id})}" th:text="#{bus.details.edit}">edit</a>
+<a th:href="@{/buses/delete/{id}(id=${bus.id})}" th:text="#{bus.details.delete}">delete</a>
 
 <footer th:include="fragments/fragments :: footer"></footer>
 </body>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Form</title>
+    <title th:text="#{bus.form.title}">title</title>
 </head>
 <body>
 <header th:include="fragments/fragments :: header"></header>
@@ -12,11 +12,12 @@
         <input type="hidden" th:field="*{id}"/>
     </label><br>
     <label>
+        <span th:text="#{bus.form.description}">description</span>
         <input type="text" th:field="*{description}"/>
         <span class="alert alert-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
     </label><br>
-    <button name="submit" value="save">Save</button>
-    <button name="submit" value="cancel">Cancel</button>
+    <button name="submit" value="save" th:text="#{bus.form.save}">save</button>
+    <button name="submit" value="cancel" th:text="#{bus.form.cancel}">cancel</button>
 </form>
 
 <footer th:include="fragments/fragments :: footer"></footer>
