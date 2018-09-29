@@ -2,8 +2,6 @@ package com.example.ct2.track;
 
 import com.example.ct2.busstop.Busstop;
 import com.example.ct2.busstop.BusstopRepository;
-import com.example.ct2.routenode.RouteNode;
-import com.example.ct2.routenode.RouteNodeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +17,6 @@ import java.util.List;
 public class TrackController {
 
     private TrackRepository trackRepository;
-    private BusstopRepository busstopRepository;
-    private RouteNodeRepository routeNodeRepository;
 
     @ModelAttribute("tracks")
     private List<Track> tracks() {
@@ -28,93 +24,56 @@ public class TrackController {
     }
 
     @GetMapping("/")
-    public String get() {
+    public String show() {
         return "track/show";
     }
 
-    @PostMapping("/")
-    public String post(@Valid Track track, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "track/form";
-        }
-        trackRepository.save(track);
-        return "redirect:/tracks/";
+    @GetMapping("/add")
+    public String add(Model model) {
+        Track track = new Track();
+        model.addAttribute(track);
+
+        return "track/form";
     }
 
-    @GetMapping("/{id}")
-    public String get(@PathVariable long id, Model model) {
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable long id, Model model) {
         Track track = trackRepository.findOne(id);
-        model.addAttribute("track", track);
+        model.addAttribute(track);
 
         return "track/details";
     }
 
-    @PutMapping("/{id}")
-    public String put(@PathVariable long id, Model model) {
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable long id, Model model) {
         Track track = trackRepository.findOne(id);
-        model.addAttribute("track", track);
+        model.addAttribute(track);
 
         return "track/form";
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable long id) {
-        trackRepository.delete(id);
+    @PostMapping("/save")
+    public String save(@Valid Track track, BindingResult bindingResult, @RequestParam String submit) {
+        if ("save".equals(submit)) {
+            if (bindingResult.hasErrors()) {
+                return "track/form";
+            }
+            trackRepository.save(track);
+        }
         return "redirect:/tracks/";
     }
 
-    //*****************
-
-    @GetMapping("/addBusstop/{trackId}/{busstopId}")
-    public String addBusstop(@PathVariable Long trackId, @PathVariable Long busstopId, @RequestParam Double orderNo) {
-        Track track = trackRepository.findOne(trackId);
-        Busstop busstop = busstopRepository.findOne(busstopId);
-        if (orderNo == null) {
-            orderNo = (double) routeNodeRepository.countByTrack(track) + 1;
-        } else {
-            orderNo -= .5;
-        }
-
-        RouteNode routeNode = new RouteNode();
-        routeNode.setTrack(track);
-        routeNode.setBusstop(busstop);
-        routeNode.setOrderNo(orderNo);
-
-        routeNodeRepository.save(routeNode);
-
-        reorderBusstops(track);
-
-        return "track/form";
+    @GetMapping("delete/{id}")
+    public String delete(@PathVariable long id, Model model) {
+        model.addAttribute("id", id);
+        return "track/confirm";
     }
 
-//    @GetMapping("/shiftBusstop/{trackId}/{busstopId}/{direction}")
-//    public String addBusstop(@PathVariable Long trackId, @PathVariable Long busstopId, @RequestParam Double orderNo) {
-//        Track track = trackRepository.findOne(trackId);
-//        Busstop busstop = busstopRepository.findOne(busstopId);
-//        if (orderNo == null) {
-//            orderNo = (double) routeNodeRepository.countByTrack(track) + 1;
-//        } else {
-//            orderNo -= .5;
-//        }
-//
-//        RouteNode routeNode = new RouteNode();
-//        routeNode.setTrack(track);
-//        routeNode.setBusstop(busstop);
-//        routeNode.setOrderNo(orderNo);
-//
-//        routeNodeRepository.save(routeNode);
-//
-//        reorderBusstops(track);
-//
-//        return "track/form";
-//    }
-
-    private void reorderBusstops(Track track) {
-        List<RouteNode> routeNodes = routeNodeRepository.findByTrack(track);
-        for (int i = 0; i < routeNodes.size(); i++) {
-            routeNodes.get(i).setOrderNo((double) i + 1);
+    @PostMapping("delete")
+    public String delete(@RequestParam long id, @RequestParam String submit) {
+        if ("delete".equals(submit)) {
+            trackRepository.delete(id);
         }
-        routeNodeRepository.save(routeNodes);
+        return "redirect:/tracks/";
     }
-
 }

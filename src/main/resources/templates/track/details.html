@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{track.details.title}">title</title>
+</head>
+<body>
+<header th:include="fragments/fragments :: header"></header>
+
+<table th:object="${track}">
+    <tbody>
+    <tr>
+        <th th:text="#{track.details.id}">id</th>
+        <td th:text="*{id}">id</td>
+    </tr>
+    <tr>
+        <th th:text="#{track.details.number}">number</th>
+        <td th:text="*{number}">number</td>
+    </tr>
+    <tr>
+        <th th:text="#{track.details.variant}">variant</th>
+        <td th:text="*{variant}">variant</td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/tracks/edit/{id}(id=${track.id})}" th:text="#{track.details.edit}">edit</a>
+<a th:href="@{/tracks/delete/{id}(id=${track.id})}" th:text="#{track.details.delete}">delete</a>
+
+<footer th:include="fragments/fragments :: footer"></footer>
+</body>
+</html>

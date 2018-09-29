@@ -56,7 +56,7 @@ public class BusstopController {
     public String save(@Valid Busstop busstop, BindingResult bindingResult, @RequestParam String submit) {
         if ("save".equals(submit)) {
             if (bindingResult.hasErrors()) {
-                return "bus/form";
+                return "busstop/form";
             }
             busstopRepository.save(busstop);
         }

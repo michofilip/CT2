@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{track.show.title}">title</title>
+</head>
+<body>
+<header th:include="fragments/fragments :: header"></header>
+
+<a th:href="@{/tracks/add}" th:text="#{track.show.add}">add</a>
+
+<table>
+    <thead>
+    <tr>
+        <th th:text="#{track.show.id}">id</th>
+        <th th:text="#{track.show.number}">number</th>
+        <th th:text="#{track.show.variant}">variant</th>
+        <th th:text="#{track.show.actions}">actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="track : ${tracks}">
+        <td th:text="${track.id}">id</td>
+        <td th:text="${track.number}">number</td>
+        <td th:text="${track.variant}">variant</td>
+        <td>
+            <a th:href="@{/tracks/details/{id}(id=${track.id})}" th:text="#{track.show.details}">details</a>
+            <a th:href="@{/tracks/edit/{id}(id=${track.id})}" th:text="#{track.show.edit}">edit</a>
+            <a th:href="@{/tracks/delete/{id}(id=${track.id})}" th:text="#{track.show.delete}">delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<footer th:include="fragments/fragments :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{track.form.title}">title</title>
+</head>
+<body>
+<header th:include="fragments/fragments :: header"></header>
+
+<form th:action="@{/tracks/save}" th:object="${track}" method="post">
+    <label>
+        <input type="hidden" th:field="*{id}"/>
+    </label><br>
+    <label>
+        <span th:text="#{track.form.number}">number</span>
+        <input type="text" th:field="*{number}"/>
+        <span class="alert alert-danger" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
+    </label><br>
+    <label>
+        <span th:text="#{track.form.variant}">variant</span>
+        <input type="text" th:field="*{variant}"/>
+        <span class="alert alert-danger" th:if="${#fields.hasErrors('variant')}" th:errors="*{variant}"></span>
+    </label><br>
+    <button name="submit" value="save" th:text="#{track.form.save}">save</button>
+    <button name="submit" value="cancel" th:text="#{track.form.cancel}">cancel</button>
+</form>
+
+<footer th:include="fragments/fragments :: footer"></footer>
+</body>
+</html>

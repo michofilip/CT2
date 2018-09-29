@@ -1,17 +1,17 @@
 package com.example.ct2.busstop;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "busstops")
-@Data
+@Getter
+@Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class Busstop {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
